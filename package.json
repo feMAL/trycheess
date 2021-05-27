@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-cheess",
+  "version": "1.0.0",
+  "description": "ajedres",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ES"
+  ],
+  "author": "Fernando Malgor",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "awilix": "^4.3.4"
+  }
+}
