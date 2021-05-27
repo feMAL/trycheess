@@ -2,6 +2,9 @@ let rows = null;
 let columns = null;
 let register = '';
 
+const FILES = ['1','2','3','4','5','6','7','8'];
+const RACKS = ['a','b','c','d','e','f','g','h'];
+
 class TableRepository {
 
     constructor({Table}){

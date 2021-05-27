@@ -1,20 +1,22 @@
-let _table = null;
-let _player = null;
-class Cheess{
-    
-    constructor({Table, Player}){
-        _player = Player;
-    }
-    
-    async createPlay(){
+const express = require('express');
+
+let _express = null
+let _config = null
+class Server  {
+    constructor({config,route}){
+        _express = express().use(route);
+        _config = config;
     }
 
-    async run(){
-        console.log('#   Malgor Chess 0.1');
-        console.log('[-] Ingrese Nombre Del Jugador');
-        let stdin = process.openStdin();
-        let prueba = new _player()
-        
-    }
+    start(){
+        return new Promise((resolve,reject)=>{
+            _express.listen(_config.PORT,(err)=>{
+                if(err) throw reject(err);
+                console.log('Cheess Server Running');
+            });
+            resolve();
+        })
+    }   
 }
-module.exports = Cheess;
+
+module.exports = Server;

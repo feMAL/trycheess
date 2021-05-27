@@ -1,4 +1,4 @@
 const container = require('./src/starter/container');
-const cheess = container.resolve("app");
+const Server = container.resolve("app");
 
-cheess.run();
+Server.start();

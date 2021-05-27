@@ -1,20 +1,16 @@
-let _name = null;
-let _color = null;
-let _status = null;
+const mongoose = require('mongoose')
 
-class Player {
-
-    constructor(name){
-        _name = name;
+const PlayerSchema = mongoose.Schema({
+    alias: {
+        type: String,
+        require: true
+    },
+    score: { type: Number, require:true },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        require: true
     }
+});
 
-    async setStatus(status){
-        _status = status;
-    }
-    
-    async setColor(color){
-        _color = color;
-    }
-}
-
-module.exports = Player;
+module.exports = mongoose.model('player', PlayerSchema);
