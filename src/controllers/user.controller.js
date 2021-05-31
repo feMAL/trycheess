@@ -7,22 +7,28 @@ class UserController {
 
     async get(req,res){
         console.log('# GET - get user by username')
-        let { username } = req.body;
-        let user = await _userService.get(username);
+        let { userId } = req.params;
+        let user = await _userService.get(userId);
         res.status(200).send({ok:true, user});
     }
 
-    async getAll(req,res){
-        let user = await _userService.getAll();
-        res.status(200).send({ok:true, user});
+    async getAll(req, res){
+        const users = await _userService.getAll();
+        return res.send(users);
     }
 
     async update(req,res){
-        
+        let {body} = req;
+        let {userId} = req.params;
+
+        const updateUser = await _userService.update(userId,body)
+        return res.send(updateUser);
     }
 
-    async delete(req,res){
-
+    async delete (req, res){
+        let { userId } = req.params;
+        const deletedUser = await _userService.delete(userId);
+        return res.send(deletedUser);
     }
 
 }

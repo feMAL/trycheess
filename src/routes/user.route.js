@@ -7,7 +7,7 @@ module.exports = function ({UserController}) {
     router.get("", UserController.getAll);
     router.patch("/:userId", UserController.update);
     router.delete("/:userId", UserController.delete);
-    //router.post("",UserController.create);
+    //router.post("", UserController.create);
     
     return router;
 }

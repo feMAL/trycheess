@@ -4,11 +4,11 @@ const { Table, Register, Player, Piece, User} = require('../models');
 //REPOS
 const { TableRepository, UserRepository } = require('../repositories');
 //SERVICIOS
-const { UserService } = require('../services')
+const { UserService, AuthService } = require('../services')
 //CONTROLLERS
-const { UserController } = require('../controllers')
+const { UserController, AuthController } = require('../controllers')
 //ROUTES
-const { UserRoutes } = require('../routes/index.route');
+const { UserRoutes, AuthRoutes } = require('../routes/index.route');
 const routes = require('../routes');
 //CONF
 const config = require('../conf');
@@ -22,11 +22,14 @@ container.register({
     routes: asFunction(routes),
     config: asValue(config)
 }).register({
-    UserRoutes: asFunction(UserRoutes)
+    UserRoutes: asFunction(UserRoutes),
+    AuthRoutes: asFunction(AuthRoutes)
 }).register({
-    UserService: asClass(UserService).singleton()
+    UserService: asClass(UserService).singleton(),
+    AuthService: asClass(AuthService).singleton()
 }).register({
-    UserController: asClass(UserController.bind(UserController)).singleton()
+    UserController: asClass(UserController.bind(UserController)).singleton(),
+    AuthController: asClass(AuthController.bind(AuthController)).singleton()
 }).register({
     Register: asValue(Register),
     Table: asValue(Table),

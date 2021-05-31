@@ -7,5 +7,9 @@ class UserService {
 
     getUserByUsername = async (username) => await _userRepo.getUserByUsername(username);
 
+    getUserByEmail = async (email) => await _userRepo.getUserByEmail(email);
+
+    create = async (user) => await _userRepo.create(user);
+
 }
 module.exports = UserService

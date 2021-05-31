@@ -12,10 +12,22 @@ class BaseRepository {
         return this.model.find();
     }
 
-    async create(){
-
+    async create(entity){
+        return this.model.create(entity);
     }
 
+    
+    async update(id, entity){
+        return await this.model.findByIdAndUpdate(id, entity, {new: true});
+    }
+
+    /**
+     *   *** Restricted Function
+     */
+    async delete(id){
+        await this.model.findByIdAndDelete(id);
+        return true;
+    }
 
 }
 module.exports = BaseRepository;

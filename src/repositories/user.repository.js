@@ -12,5 +12,9 @@ class UserRepository extends BaseRepository {
     async getUserByUsername(username){
         return await _user.findOne({ username });
     }
+
+    async getUserByEmail(email){
+        return await _user.findOne({ email });
+    }
 }
 module.exports = UserRepository;

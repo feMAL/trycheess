@@ -14,7 +14,8 @@ const UserSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true, 'El email es necesario']
+        required: [true, 'El email es necesario'],
+        unique: [true, 'El email ya existe' ]
     },
     username: {
         type: String,
@@ -62,6 +63,5 @@ UserSchema.pre('save', async function(next){
     next();
 });
 
-UserSchema.plugin(muv);
 
 module.exports = mongoose.model('user', UserSchema);
