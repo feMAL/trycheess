@@ -1,12 +1,17 @@
 const {asClass, asFunction, asValue, createContainer} = require('awilix');
 //MODELS
-const { Table, Register, Player, Piece } = require('../models');
+const { Table, Register, Player, Piece, User} = require('../models');
 //REPOS
-const {TableRepository} = require('../repositories'); 
+const { TableRepository, UserRepository } = require('../repositories');
+//SERVICIOS
+const { UserService } = require('../services')
+//CONTROLLERS
+const { UserController } = require('../controllers')
 //ROUTES
+const { UserRoutes } = require('../routes/index.route');
 const routes = require('../routes');
 //CONF
-const conf = require('../conf');
+const config = require('../conf');
 //STARTER
 let app = require('.');
 
@@ -17,12 +22,20 @@ container.register({
     routes: asFunction(routes),
     config: asValue(config)
 }).register({
-    Register: asClass(Register).singleton(),
-    Table: asClass(Table).singleton(),
-    Player: asClass(Player).singleton(),
-    Piece: asClass(Piece).singleton()
+    UserRoutes: asFunction(UserRoutes)
 }).register({
+    UserService: asClass(UserService).singleton()
+}).register({
+    UserController: asClass(UserController.bind(UserController)).singleton()
+}).register({
+    Register: asValue(Register),
+    Table: asValue(Table),
+    Player: asValue(Player),
+    Piece: asValue(Piece),
+    User: asValue(User)
+}).register({
+    UserRepository: asClass(UserRepository).singleton(),
     TableRepository: asClass(TableRepository).singleton()
-})
+});
 
 module.exports = container;
