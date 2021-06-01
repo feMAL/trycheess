@@ -1,4 +1,6 @@
+const {JWTHelper} = require('../helpers');
 let _userService = null;
+
 class AuthService {
     constructor({UserService}){
         _userService = UserService;
@@ -6,7 +8,7 @@ class AuthService {
 
     async singup(user){
         const { username, email } = user;
-        console.log(username, email);
+
         const userExist = await _userService.getUserByUsername(username);
         const emailExist = await _userService.getUserByEmail(email);
         
@@ -22,11 +24,16 @@ class AuthService {
     async singin(credentials){
         let { username, password } = credentials;
 
-        const user = await _userService.getUserByUsername(username);
-        let passValid = user.comparePassword(password);
-        
-        return await _userService.generateToken(user);       
-        
+        const USER = await _userService.getUserByUsername(username);
+        let passValid = USER.comparePassword(password);
+        if(!passValid){
+            const error = new Error();
+            error.status = 401;
+            error.message = 'User or Password failed';
+            return error;
+        }
+        let token = await JWTHelper.generateToken(USER);
+        return {token, user: USER};
     }
 
 }

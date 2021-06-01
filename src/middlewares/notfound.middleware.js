@@ -1,8 +1,1 @@
-module.exports = (err, req, res, next) => {
-    const httpStatus = err.status || 500;
-    return res.status(httpStatus)
-        .send({
-            status: httpStatus,
-            message: err.message || 'Internal Server Error'
-        });
-};
+module.exports = (err, req, res, next) => res.status(200).send({ status: 404, message: 'Object not found' });

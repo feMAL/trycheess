@@ -1,6 +1,6 @@
 const {asClass, asFunction, asValue, createContainer} = require('awilix');
 //MODELS
-const { Table, Register, Player, Piece, User} = require('../models');
+const { Table, Register, Player, Piece, User } = require('../models');
 //REPOS
 const { TableRepository, UserRepository } = require('../repositories');
 //SERVICIOS
@@ -31,11 +31,11 @@ container.register({
     UserController: asClass(UserController.bind(UserController)).singleton(),
     AuthController: asClass(AuthController.bind(AuthController)).singleton()
 }).register({
+    User: asValue(User),
     Register: asValue(Register),
     Table: asValue(Table),
     Player: asValue(Player),
     Piece: asValue(Piece),
-    User: asValue(User)
 }).register({
     UserRepository: asClass(UserRepository).singleton(),
     TableRepository: asClass(TableRepository).singleton()

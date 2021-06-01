@@ -1,23 +1,31 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const helmet = require('helmet');
+const compression = require('compression')
+
+const { NotFoundMiddleware, ErrorMiddleware } = require('../middlewares');
+//require('express-async-error');
 
 module.exports = function ({UserRoutes, AuthRoutes}) {
-    let app = express.Router();
-    let routes = express.Router();
+    let router = express.Router();
+    let apiRoutes = express.Router();
 
-    routes
-        .use(express.urlencoded({extended: false}))
-        .use(express.json())
-        .use(cors())
-        .use(express.static(path.resolve(__dirname, '../../public')));
-        //.use(helmet())
-        //.use(compression());
+    apiRoutes
+    .use(express.json({strict: true}))
+    .use(cors())
+    //.use(helmet())
+    .use(compression());
+    //.use(express.urlencoded({extended: false}))
 
-    routes.use('/user', UserRoutes);
-    routes.use('/auth', AuthRoutes);
+    apiRoutes.use('/user', UserRoutes);
+    apiRoutes.use('/auth', AuthRoutes);
 
-    app.use('/v1/api',routes);
+    router.use('/v1/api',apiRoutes);
+    //app.use(express.static(path.resolve(__dirname, '../../public')));
 
-    return app;
+    router.use(NotFoundMiddleware);
+    router.use(ErrorMiddleware);
+
+    return router;
 }

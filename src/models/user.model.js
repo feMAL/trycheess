@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const muv = require('mongoose-unique-validator');
 const { compareSync, hashSync, genSaltSync } = require('bcryptjs');
 
 let role_options = {
