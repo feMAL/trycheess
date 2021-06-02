@@ -1,24 +1,16 @@
-let _player1 = null;
-let _player2 = null;
-let _piecesIn = [];
-let _piecesOut = [];
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-
-class Table {
-
-    constructor(Player1, Player2){
-        _player1 = Player1;
-        _player2 = Player2;
+const BoardSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    register: {
+        type: Schema.Types.ObjectId,
+        ref: 'register',
+        required: true
     }
+});
 
-    async create(){
-
-    }
-
-    async move(piece,position){
-        
-    }
-
-
-}
-module.exports = Table;
+module.exports = mongoose.model('board',BoardSchema);

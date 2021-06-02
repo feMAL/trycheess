@@ -5,7 +5,9 @@ class AuthController {
     }
 
     async singup(req,res){
+        
         console.log('# POST - /singup - Crear usuario');
+        
         try {
             const user = req.body;
             
@@ -27,14 +29,17 @@ class AuthController {
 
     async singin(req,res){
         console.log('# POST - /singin - Logearse en la app');
-        let credentials = req.body;
-
-        let { username, password } = credentials;
-        
-        if(!username || !password) return res.status(400).send({ok: false, message: 'No ha enviado las credenciales' })
-        
-        let cred = await _authService.singin(credentials);
-        return res.status(200).send(cred);
+        try {
+            let credentials = req.body;
+            let { username, password } = credentials;
+            
+            if(!username || !password) return res.status(400).send({ok: false, message: 'No ha enviado las credenciales' })
+            
+            let cred = await _authService.singin(credentials);
+            return res.status(200).send({token: cred.token, user: cred.user._doc});
+        }catch(e){
+            return res.send(e);
+        }
     }
 
 }

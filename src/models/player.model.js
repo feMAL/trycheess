@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
-const PlayerSchema = mongoose.Schema({
+const PlayerSchema = new mongoose.Schema({
     alias: {
         type: String,
         require: true
     },
-    score: { type: Number, require:true },
+    score: { type: Number, require: true },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',

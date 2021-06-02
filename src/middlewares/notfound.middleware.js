@@ -1,1 +1,1 @@
-module.exports = (err, req, res, next) => res.status(200).send({ status: 404, message: 'Object not found' });
+module.exports = (req, res, next) => res.status(200).send({ status: 404, message: 'Object not found' });

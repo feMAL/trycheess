@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const compression = require('compression')
 
 const { NotFoundMiddleware, ErrorMiddleware } = require('../middlewares');
-//require('express-async-error');
+require('express-async-errors');
 
 module.exports = function ({UserRoutes, AuthRoutes}) {
     let router = express.Router();
@@ -14,7 +14,7 @@ module.exports = function ({UserRoutes, AuthRoutes}) {
     apiRoutes
     .use(express.json({strict: true}))
     .use(cors())
-    //.use(helmet())
+    .use(helmet())
     .use(compression());
     //.use(express.urlencoded({extended: false}))
 

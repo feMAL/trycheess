@@ -46,7 +46,7 @@ UserSchema.methods.comparePassword = function (pass) {
 }
 
 UserSchema.methods.toJSON = function () {
-    let obj = this
+    let obj = this.toObject();
     delete obj.password;
     return obj;
 }
@@ -54,7 +54,7 @@ UserSchema.methods.toJSON = function () {
 UserSchema.pre('save', async function(next){
     const user = this;
     if(!user.isModified("password")){
-        next()
+        return next();
     }
     const salt = genSaltSync(10);
     const hashPassword = hashSync(user.password,salt);

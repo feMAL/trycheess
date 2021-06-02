@@ -1,7 +1,7 @@
 const BaseService = require("./base.service");
 
 let _userRepo = null;
-class UserService extends BaseService{
+class UserService extends BaseService {
 
     constructor({UserRepository}){
         super(UserRepository);

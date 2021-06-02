@@ -2,10 +2,12 @@ const {JWTHelper} = require('../helpers');
 let _userService = null;
 
 class AuthService {
+    
     constructor({UserService}){
         _userService = UserService;
     }
 
+    //SINGUP Function
     async singup(user){
         const { username, email } = user;
 
@@ -21,18 +23,27 @@ class AuthService {
         return await _userService.create(user);
     }
 
+    //SINGIN Function 
     async singin(credentials){
-        let { username, password } = credentials;
+        const { username, password } = credentials;
 
         const USER = await _userService.getUserByUsername(username);
-        let passValid = USER.comparePassword(password);
+        
+        if(!USER.status) {
+            const error = new Error();
+            error.status = 401;
+            error.message = 'User was deleted';
+            throw error;
+        }
+
+        const passValid = USER.comparePassword(password);
         if(!passValid){
             const error = new Error();
             error.status = 401;
             error.message = 'User or Password failed';
-            return error;
+            throw error;
         }
-        let token = await JWTHelper.generateToken(USER);
+        const token = await JWTHelper.generateToken(USER);
         return {token, user: USER};
     }
 
