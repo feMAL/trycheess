@@ -42,5 +42,16 @@ class AuthController {
         }
     }
 
+    async elevatePrivileges(req,res){
+        console.log('# GET - /:id/:role - Elevar privilegios de un usuario');
+        const {idToElevate, roleToChange} = req.params;
+
+        if(!idToElevate) return res.status(400).send({ok: false, message: 'No ha enviado la consulta correctamente'});
+
+        const status = await _authService.elevatePrivileges(idToElevate, roleToChange);
+
+        return res.status(200).send({operation: status, message:'Ha cambiado sus privilegios exitosamente'});
+    }
+
 }
 module.exports = AuthController;

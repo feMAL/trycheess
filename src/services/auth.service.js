@@ -47,5 +47,32 @@ class AuthService {
         return {token, user: USER};
     }
 
+    async elevatePrivileges(id, role){
+        const user = await _userService.get(id);
+        if(!user){
+            const error = new Error();
+            error.status = 401;
+            error.message = 'User does not exist';
+            throw error;
+        }
+        switch(role){
+            case 'moderator':
+                user.role = 'ROLE_MODERATOR';
+                break;
+            case 'admin':
+                user.role = 'ROLE_ADMIN';
+                break;
+            case 'user':
+                user.role = 'ROLE_USER';
+                break;
+            default:
+                let error = new Error();
+                error.status = 400;
+                error.message = 'Ese privilegio no existe';
+                throw error;
+        }
+        return await _userService.update(id,user);
+    }
+
 }
 module.exports = AuthService;

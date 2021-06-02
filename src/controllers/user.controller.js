@@ -21,7 +21,11 @@ class UserController {
         let {body} = req;
         let {userId} = req.params;
 
-        const updateUser = await _userService.update(userId,body)
+        if(body && body.role) delete body.role;
+        if(body && body.status) delete body.status; 
+        
+        const updateUser = await _userService.update(userId,body);
+        
         return res.send(updateUser);
     }
 

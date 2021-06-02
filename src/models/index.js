@@ -3,5 +3,6 @@ module.exports = {
     Player: require('./player.model'),
     Register: require('./register.model'),
     Table: require('./table.model'),
-    User: require('./user.model')
+    User: require('./user.model'),
+    Room: require('./room.model')
 }
