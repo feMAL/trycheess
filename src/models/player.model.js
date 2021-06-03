@@ -1,13 +1,17 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const PlayerSchema = new mongoose.Schema({
+const PlayerSchema = new Schema({
     alias: {
         type: String,
         require: true
     },
-    score: { type: Number, require: true },
+    score: {
+        type: Number,
+        require: true
+    },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'user',
         require: true
     }
