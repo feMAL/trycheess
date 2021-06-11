@@ -6,6 +6,9 @@ const PlayerSchema = new Schema({
         type: String,
         require: true
     },
+    message:{
+        type: String
+    },
     score: {
         type: Number,
         require: true

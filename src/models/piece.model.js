@@ -1,22 +1,18 @@
 const mongoose = require('mongoose')
 
 let types = {
-    values: ['knight','king', 'queen', 'rook', 'bishop','pawn'],
+    values: ['knight','king', 'queen', 'rook', 'bishop','pawn','no-piece'],
     message:'No existe esa pieza'
 };
 
-const PieceSchema = mongoose.Schema({
-    color: {
+const PieceSchema = new mongoose.Schema({
+    player: {
         type: String,
         required: true
     },
-    type: { 
+    type: {
         type: String,
         enum: types,
-        required: true
-    },
-    status: {
-        type: Boolean,
         required: true
     }
 });

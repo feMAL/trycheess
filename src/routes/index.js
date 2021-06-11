@@ -7,7 +7,7 @@ const compression = require('compression')
 const { NotFoundMiddleware, ErrorMiddleware } = require('../middlewares');
 require('express-async-errors');
 
-module.exports = function ({UserRoutes, AuthRoutes, BoardRoutes}) {
+module.exports = function ({UserRoutes, AuthRoutes, BoardRoutes, PlayerRoutes}) {
     let router = express.Router();
     let apiRoutes = express.Router();
 
@@ -21,6 +21,7 @@ module.exports = function ({UserRoutes, AuthRoutes, BoardRoutes}) {
     apiRoutes.use('/user', UserRoutes);
     apiRoutes.use('/auth', AuthRoutes);
     apiRoutes.use('/board', BoardRoutes);
+    apiRoutes.use('/player', PlayerRoutes);
 
     router.use('/v1/api',apiRoutes);
     //app.use(express.static(path.resolve(__dirname, '../../public')));

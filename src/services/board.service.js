@@ -8,9 +8,9 @@ class BoardService extends BaseService{
         _boardRepo = BoardRepository;
     }
 
-    async create(){
-        await _boardRepo.init();
-        await _boardRepo.loadPieces()
+    async create(player1,player2){
+        let board = await _boardRepo.init();
+        board = await _boardRepo.loadPieces();
         return await _boardRepo.see();
     }
 
