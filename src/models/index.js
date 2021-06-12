@@ -1,8 +1,8 @@
 module.exports = {
     Piece: require('./piece.model'),
-    Player: require('./player.model'),
+    Board: require('./board.model'),
     Register: require('./register.model'),
-    Table: require('./table.model'),
+    Room: require('./room.model'),
+    Player: require('./player.model'),
     User: require('./user.model'),
-    Room: require('./room.model')
 }

@@ -1,4 +1,6 @@
 module.exports = {
-    TableRepository: require('./table.repository'),
-    UserRepository: require('./user.repository')
+    BoardRepository: require('./board.repository'),
+    UserRepository: require('./user.repository'),
+    PlayerRepository: require('./player.repository'),
+    PieceRepository: require('./piece.repository')
 }
