@@ -16,8 +16,6 @@ class PlayerController {
     async create(req,res){
         let body = req.body;
         let user = req.user;
-        console.log(user);
-        console.log(body);
         if(!body.alias){
             let error = new Error();
             error.status = 400;

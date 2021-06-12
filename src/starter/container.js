@@ -4,7 +4,7 @@ const { Board, Register, Player, Piece, User, Room } = require('../models');
 //REPOS
 const { BoardRepository, UserRepository, PlayerRepository, PieceRepository } = require('../repositories');
 //SERVICIOS
-const { UserService, AuthService, BoardService, PlayerService } = require('../services');
+const { UserService, AuthService, BoardService, PlayerService, PieceService } = require('../services');
 //CONTROLLERS
 const { UserController, AuthController, BoardController, PlayerController } = require('../controllers');
 //ROUTES
@@ -30,7 +30,8 @@ container.register({
     UserService: asClass(UserService).singleton(),
     AuthService: asClass(AuthService).singleton(),
     BoardService: asClass(BoardService).singleton(),
-    PlayerService: asClass(PlayerService).singleton()
+    PlayerService: asClass(PlayerService).singleton(),
+    PieceService: asClass(PieceService).singleton()
 }).register({
     UserController: asClass(UserController.bind(UserController)).singleton(),
     AuthController: asClass(AuthController.bind(AuthController)).singleton(),

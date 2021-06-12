@@ -8,10 +8,16 @@ class BoardService extends BaseService{
         _boardRepo = BoardRepository;
     }
 
-    async create(player1,player2){
+    async create(player,opponent){
+        let obj = {
+            player1: player,
+            player2: opponent
+        };
         let board = await _boardRepo.init();
-        board = await _boardRepo.loadPieces();
-        return await _boardRepo.see();
+        await _boardRepo.loadPieces(board, player._id, opponent._id);
+        obj.board = board;
+        let boardSaved = await _boardRepo.create(obj);
+        return boardSaved;
     }
 
 }

@@ -7,5 +7,8 @@ class PlayerRepository extends BaseRepository {
         _player = Player;
     }
     
+    async getPlayerByUserId(user){
+        return await _player.findOne({ user });
+    }
 }
 module.exports = PlayerRepository;

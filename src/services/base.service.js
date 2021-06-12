@@ -12,15 +12,15 @@ class BaseService {
             throw error;
         }
         
-        let user = await this.repository.get(id); 
+        let object = await this.repository.get(id); 
         
-        if(!user){
+        if(!object){
             let error = new Error();
             error.status = 404;
-            error.message = 'User not found';
+            error.message = 'Object not found';
             throw error;
         }
-        return user;
+        return object;
     }
 
     async getAll(){

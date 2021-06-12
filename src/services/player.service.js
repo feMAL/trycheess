@@ -10,9 +10,14 @@ class PlayerService extends BaseService {
     async create(rawplay, user){
         let player = rawplay;
         player.user = user; 
-        player = _playerRepo.create(player);
+        player = await _playerRepo.create(player);
         
         return player;
     }
+
+    async getPlayerByUserId(user){
+        return await _playerRepo.getPlayerByUserId(user);
+    }
+
 }
 module.exports = PlayerService;
